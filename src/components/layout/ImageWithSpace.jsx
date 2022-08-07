@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const WIDTH_BREAK = '600px'
+const WIDTH_BREAK = '700px'
 
 const StyledFlex = styled.div`
  display: flex; 
@@ -23,8 +23,7 @@ const StyledContainer = styled.div`
   padding: 30px;
   
   @media (min-width: ${WIDTH_BREAK}) {
-    width: 100%;
-    min-width: calc(${WIDTH_BREAK} - 60px);
+     min-width: calc(${WIDTH_BREAK} - 60px);
   }
 
   @media (max-width: ${WIDTH_BREAK}) {
