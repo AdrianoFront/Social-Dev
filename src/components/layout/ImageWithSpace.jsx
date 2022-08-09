@@ -27,7 +27,7 @@ const StyledContainer = styled.div`
   }
 
   @media (max-width: ${WIDTH_BREAK}) {
-    width 100%;
+    width: 100%;
   }
 
 display: flex;
@@ -47,8 +47,8 @@ justify-content: center;
   )
 }
 
-ImageWithSpace.default = {
-  image: './public/coffee-background.jpg'
+ImageWithSpace.defaultProps = {
+  image: '../../../public/coffee-background.jpg'
 }
 
 export default ImageWithSpace
