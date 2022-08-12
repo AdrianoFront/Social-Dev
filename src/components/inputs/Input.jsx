@@ -1,4 +1,4 @@
-import style from 'styled-components'
+import styled from 'styled-components'
 
 const InputContainer = styled.div`
   width: 100%;
@@ -22,7 +22,7 @@ const StyledInput = styled.input`
 function Input ({ label, ...props }) {
   return(
     <InputContainer>
-      <StyledLabel>{Label}</StyledLabel>
+      <StyledLabel>{label}</StyledLabel>
       <StyledInput placeholder={label} {...props} />
     </InputContainer>
 

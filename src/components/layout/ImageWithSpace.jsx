@@ -8,7 +8,7 @@ const StyledFlex = styled.div`
 `
 
 const StyledImage = styled.div`
-  background-image: url('${props => props.image}')
+  background-image: url('${props => props.image}');
   background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,7 +33,14 @@ const StyledContainer = styled.div`
 
 display: flex;
 flex-direction: column;
-justify-content: center;
+
+height: calc(100vh - 60px);
+overflow: auto;
+
+&:before, &:after {
+  content: '';
+  margin: auto;
+}
 `
 
 
