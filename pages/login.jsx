@@ -16,6 +16,7 @@ const FormContainer = styled.div`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  width: 523px;
   margin: 20px 0;
   gap: 20px;
 `
@@ -36,7 +37,7 @@ function LoginPage () {
           <Input Label="Senha" type="password" />
           <Button>Entrar</Button>
         </Form>
-        <Text>Não possuia uma conta? <Link href="/login">Faça seu cadastro</Link> </Text>
+        <Text>Não possui uma conta? <Link href="/login">Faça seu cadastro</Link> </Text>
       </FormContainer>
     </ImageWithSpace>
   )
