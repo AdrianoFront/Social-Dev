@@ -3,10 +3,9 @@ import { withIronSessionApiRoute } from 'iron-session/next'
 
 
 import createHandler from '../../../lib/middlewares/nextConnect'
-
 import validate from '../../../lib/middlewares/validation'
-
 import { signupUser } from '../../../modules/user/user.service'
+import { signupSchema } from '../../../lib/middlewares/ironSession'
 
 import { ironConfig } from '../../../lib/middlewares/ironSession'
 

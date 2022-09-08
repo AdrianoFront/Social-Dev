@@ -2,7 +2,9 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { userForm} from 'react-hook-form'
-import { joiResolver } from '@hookform/resolvers'
+import { joiResolver } from '@hookform/resolvers/joi'
+
+import { signupSchema } from '../modules/user/user.schema'
 
 import ImageWithSpace from '../src/components/layout/ImageWithSpace'
 import H1 from '../src/components/typography/H1'
@@ -28,12 +30,9 @@ const Text = styled.p`
 `
 
 function SignupPage () {
-  const { register, handleSubmit } = useForm()
-  const [FirstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useSate('')
-  const [user, setUser] = useSate('')
-  const [email, setEmail] = useSate('')
-  const [password, setPassword] = useSate('')
+  const { register, handleSubmit, formState: { errors} } = useForm({ 
+    resolver: joiresolver(signupSchema)
+  })
 
   const handleForm = (data) => {
     console.log(data)
