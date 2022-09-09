@@ -45,11 +45,11 @@ function SignupPage () {
       <FormContainer>
         <H2>Crie sua conta</H2>
         <Form onSubmit={handleSubmit(handleForm)}>
-          <Input label="Nome" {...register('firstName')}/>
-          <Input label="Sobrenome" {...register('LastName')}/>
-          <Input label="Usuário" {...register('user')}/>
-          <Input Label="Email" type="email" {...register('email')}/>
-          <Input Label="Senha" type="password" {...register('password')}/>
+          <Input label="Nome" {...register('firstName')} error={errors.firstName}/>
+          <Input label="Sobrenome" {...register('LastName')} error={errors.lastName}/>
+          <Input label="Usuário" {...register('user')} error={errors.user}/>
+          <Input Label="Email" type="email" {...register('email')} error={errors.email}/>
+          <Input Label="Senha" type="password" {...register('password')} error={errors.password}/>
           <Button type="submit">Cadastrar</Button>
         </Form>
         <Text>Já possui uma conta? <Link href="/signup">Faça seu login</Link> </Text>

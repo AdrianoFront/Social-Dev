@@ -20,11 +20,12 @@ const StyledInput = styled.input`
   border-radius: 10px;
 `
 
-const Input = forwardRef(({ label, ...props }, ref) => {
+const Input = forwardRef(({ label, error, ...props }, ref) => {
   return(
     <InputContainer>
       <StyledLabel>{label}</StyledLabel>
       <StyledInput placeholder={label} {...props} ref={ref} />
+      {error && <p>ERRO AQUI</p>}
     </InputContainer>
 
   )
