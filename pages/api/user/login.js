@@ -5,6 +5,7 @@ import validate from '../../../lib/middlewares/validation'
 import { login } from '../../../modules/user/user.service'
 
 import { ironConfig } from '../../../lib/middlewares/ironSession'
+import { loginSchema } from '../../../modules/user/user.schema'
 
 const loginSchema = Joi.object({
   userOrEmail: Joi.string().requered(),
@@ -13,7 +14,7 @@ const loginSchema = Joi.object({
 
 const handler = createHandler()
 
-handler.post(validate({ body: loginSchema }), (req, res) => {
+handler.post(validate({ body: loginSchema }), async (req, res) => {
   try{
     const user = await login(req.body)
     req.session.user = {
@@ -23,8 +24,7 @@ handler.post(validate({ body: loginSchema }), (req, res) => {
     await req.session.save()
     res.send({ ok: true })
   } catch (err) {
-    console.log(err)
-    throw err
+    return res.status(400).send(err.message)
   }
 })
 
