@@ -33,9 +33,14 @@ signup.post( validate({body: postSchema}), async (req, res) => {
 
     res.status(201).json({ ok: true })
   } catch (err) {
+    if (err.code === 11000) {
+      return res.status(400).send({ 
+        code: 11000,
+        duplicatedKey: Object.keys(err.keyPattern)[0]
+      })
+    }
     throw err
-  }
-  
+  }  
 })
 
 export default withIronSessionApiRoute(signup, ironConfig)
