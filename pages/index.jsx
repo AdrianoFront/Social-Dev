@@ -54,4 +54,8 @@ function HomePage () {
   )
 }
 
+export const getServerSideProps = () => {
+  console.log("entrou aqui")
+}
+
 export default HomePage
