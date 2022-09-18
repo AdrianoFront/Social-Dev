@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import Moment from 'moment'
+import moment from 'moment/moment'
 
 const PostContainer = styled.div`
   background-color: ${props => props.theme.white};
@@ -19,13 +21,13 @@ const ContainerText = styled.div`
   margin-top: 20px;
 `
 
-function Post () {
+function Post ({ text, user, date }) {
   return(
     <PostContainer>
-      <StyledUsername>@username </StyledUsername>
-      <StyledDate>15 de outubro 1822 </StyledDate>
+      <StyledUsername>@{user} </StyledUsername>
+      <StyledDate>{moment(date).format('LLL')}</StyledDate>
       <ContainerText>
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        {text}
       </ContainerText>
     </PostContainer>
   )
