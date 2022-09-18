@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { withIronSessionSsr } from 'iron-session/next'
 import axios from 'axios'
+import useSWR from 'swr'
 
 import { ironConfig } from '../lib/middlewares/ironSession'
 
@@ -10,6 +11,7 @@ import Container from '../src/components/layout/Container'
 import CreatePost from '../components/cards/CreatePost'
 import H3 from '../src/components/typography/H3'
 import Post from '../src/components/cards/Post'
+import { get } from 'react-hook-form'
 
 const Content = styled.div`
   margin: 50px 0;
@@ -36,19 +38,10 @@ const PostContainer = styled.div`
   margin-top: 20px;
 `
 
+const fetcher = url => axios.get(url).then(res => res.data)
+
 function HomePage ({ user }) {
-  const[data, setData] = useState()
-
-  const handlePosts = async () => {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
-    setData()
-  }
-  
-  
-  useEffect(() => {
-    handlePosts()
-  }, [])
-
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, fetcher)
   return (
     <>
       <Navbar/>
@@ -61,7 +54,7 @@ function HomePage ({ user }) {
           </RefreshPostsContainer>
           <PostContainer>
             {
-              data.map(post => 
+              data?.map(post => 
                 <Post 
                 Key={post._id}
                 text={post.text}
