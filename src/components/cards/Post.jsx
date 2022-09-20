@@ -27,10 +27,28 @@ const ContainerMenu = styled.div`
 `
 
 function Post ({ text, user, date }) {
+  const handleEdit = () => {
+
+  }
+  const handleDelete = () => {
+
+  }
+
   return(
     <PostContainer>
       <ContainerMenu>
-        <Menu/>
+        <Menu
+          options={[
+            {
+              text: 'Editar publicação',
+              onClick: handleEdit
+            },
+            {
+              text: 'Deletar publicação',
+              onClick: handleDelete
+            }
+          ]}
+        />
       </ContainerMenu>
       <StyledUsername>@{user} </StyledUsername>
       <StyledDate>{moment(date).format('LLL')}</StyledDate>

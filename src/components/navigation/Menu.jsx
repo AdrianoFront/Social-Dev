@@ -29,20 +29,36 @@ const StyledContainerMenu = styled.div`
   position: relative;
 `
 
-const Menu = () => {
+const Menu = ({ options = [] }) => {
   const [show, setShow] = useState(false)
   const menuRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShow(false)
+      }
+    }
+    document.addEventListener('click', handleClickOutside, true)
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true)
+    }
+  }, [menuRef])
 
   return (
     <StyledContainerMenu>
       <Dots src="./three-dots.svg" height="20px" onCLick={() => setShow(!show)}/>
       <StyledMenu show={show} ref={menuRef} onBlur={() => setShow(false)}>
-        <StyledOption>
-          Deletar post
-        </StyledOption>
-        <StyledOption>
-          Editar post
-        </StyledOption>
+        {
+          options.map((option, pos) =>
+            <StyledOption
+            key={`menu-option-${pos}`}
+            onCLick={option.onCLick}
+          >
+            {option.text}
+          </StyledOption>
+          ) 
+        }
       </StyledMenu>
     </StyledContainerMenu>
   )
