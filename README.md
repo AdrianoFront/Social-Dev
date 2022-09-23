@@ -11,3 +11,7 @@ Projeto desenvolvido durante a segunda etapa do curso SejaDev.
 - Webpack
 - Styled Components
 - MongoDB
+
+#Bibliotecas:
+- SWR
+- Joi
