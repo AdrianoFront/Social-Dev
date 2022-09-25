@@ -45,6 +45,11 @@ const Menu = ({ options = [] }) => {
     }
   }, [menuRef])
 
+  const handleClick = (onclick) => {
+    setShow(false)
+    onclick()
+  }
+
   return (
     <StyledContainerMenu>
       <Dots src="./three-dots.svg" height="20px" onCLick={() => setShow(!show)}/>
@@ -53,7 +58,7 @@ const Menu = ({ options = [] }) => {
           options.map((option, pos) =>
             <StyledOption
             key={`menu-option-${pos}`}
-            onCLick={option.onCLick}
+            onCLick={() => handleClick(option.onCLick)}
           >
             {option.text}
           </StyledOption>

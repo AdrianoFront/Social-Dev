@@ -1,6 +1,6 @@
 import style from 'styled-components'
 
-const Button = style.button`
+const StyleButton = style.button`
   background-color: ${props => props.theme.primary};
   padding: 15px 20px;
   border-radius: 10px;
@@ -20,5 +20,18 @@ const Button = style.button`
     background-color: ${props => props.theme.disable};
   }
 `
+
+const Button = ({ children, loading, disable, ...props }) => {
+
+  return (
+    <StyledButton
+      disabled={disable || loading} 
+      {...props}
+    >
+      {loading && <img src="./loading.svg" width="14px"/>}
+      {!loading && children}
+    </StyledButton>
+  )  
+}
 
 export default Button

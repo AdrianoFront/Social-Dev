@@ -1,9 +1,11 @@
 import { withIronSessionApiRoute } from 'iron-session/next'
+
 import createHandler from '../../../lib/middlewares/nextConnect'
 import validate from '../../../lib/middlewares/validation'
 import { ironConfig } from '../../../lib/middlewares/ironSession'
-import { createPostSchema } from '../../../modules/post/post.schema'
-import { createPost, getPosts } from '../../../modules/post/post.service'
+
+import { createPostSchema, deletePostSchema, editPostSchema } from '../../../modules/post/post.schema'
+import { createPost, deletePost, getPosts } from '../../../modules/post/post.service'
 
 const handler = createHandler() 
 
@@ -22,9 +24,17 @@ handler
     try {
       if (!req.session.user) return res.status(401).send()
 
-      const posts = await getPosts(req.session.user)
+      const posts = await getPosts()
       res.status(200).send(posts)
     } catch(err) {
+      return res.status(500).send(err.message)
+    }
+  })
+  .pacth(validate(editPostSchema), async (req, res) => {
+    try {
+      if (!req.session.user) return res.status(401).send()
+      
+    } catch (err) {
       return res.status(500).send(err.message)
     }
   })
