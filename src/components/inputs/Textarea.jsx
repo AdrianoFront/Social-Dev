@@ -10,14 +10,8 @@ const TextArea = styled.textarea`
   border-radius: 10px;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-`
+`;
 
-function TextArea () {
-  return (
-    <div>
 
-    </div>
-  )
-}
 
 export default TextArea

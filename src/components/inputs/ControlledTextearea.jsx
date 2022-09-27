@@ -1,6 +1,6 @@
 import { useController } from 'react-hook-form'
 
-import Textarea from './Textarea'
+import TextArea from './TextArea'
 
 const ControlledTextarea = ({ name, control, defaultValue = '', ...props }) => {
     const { 
@@ -8,7 +8,7 @@ const ControlledTextarea = ({ name, control, defaultValue = '', ...props }) => {
     } = useController({ name, control, defaultValue })
 
   return (
-    <Textarea {...props} value={value} onChange={onChange} />
+    <TextArea {...props} value={value} onChange={onChange} />
   )
 }
 

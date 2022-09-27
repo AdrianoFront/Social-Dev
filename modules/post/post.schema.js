@@ -1,6 +1,7 @@
-import Joi from 'joi'
+import Joi from 'joi';
 
 import joiObjectid from 'joi-objectid'
+
 Joi.objectId = joiObjectid(Joi)
 
 export const createPostSchema = Joi.object({
