@@ -11,7 +11,6 @@ import Container from '../src/components/layout/Container'
 import CreatePost from '../components/cards/CreatePost'
 import H3 from '../src/components/typography/H3'
 import Post from '../src/components/cards/Post'
-import { get } from 'react-hook-form'
 
 const Content = styled.div`
   margin: 50px 0;
@@ -57,6 +56,8 @@ function HomePage ({ user }) {
                 text={post.text}
                 user={post.createdBy.user}
                 date={post.createdDate}
+                isOwner={post.createdBy._id === user.id}
+                id={post._id}
                 />
               )  
             }
@@ -68,7 +69,7 @@ function HomePage ({ user }) {
 }
 
 export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req }) {
+  async function getServerSideProps ({ req }) {
     const user = req.session.user
     
     if (!user) {
@@ -82,11 +83,10 @@ export const getServerSideProps = withIronSessionSsr(
     
     return {
       props: { 
-        user
+        user: user,
       }
     }
-  },
-  ironConfig
+  }, ironConfig
 )
 
 export default HomePage

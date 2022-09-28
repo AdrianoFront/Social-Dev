@@ -63,7 +63,7 @@ function SignupPage () {
           <Input label="Usuário" name="user" control={control} />
           <Input Label="Email" type="email" name="email" control={control} />
           <Input Label="Senha" type="password" name="password" control={control} />
-          <Button type="submit" disabled={Object.keys(errors).length > 0}>Cadastrar</Button>
+          <Button loading={true} type="submit" disabled={Object.keys(errors).length > 0}>Cadastrar</Button>
         </Form>
         <Text>Já possui uma conta? <Link href="/signup">Faça seu login</Link> </Text>
       </FormContainer>
