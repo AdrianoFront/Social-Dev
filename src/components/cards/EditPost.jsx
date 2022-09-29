@@ -1,10 +1,13 @@
 import { useForm } from 'react-hook-form'
 import { joiResolver } from '@hookform/resolvers/joi'
+import axios from 'axios'
+import { useState } from "react";
 
 import ControlledTextarea from '../inputs/ControlledTextearea'
 import { createPostSchema } from '../../../modules/post/post.schema'
+import Button from "../inputs/Button";
 
-const EditPost = ({ id, text}) => {
+const EditPost = ({ id, text, onSave}) => {
     const { control, handleSubmit, formState: { isValid } } = useForm({
         resolver: joiResolver(createPostSchema),
         mode: 'all'

@@ -1,21 +1,22 @@
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
-import {joiResolver } from '@hookform/resolvers/joi-resolver'
+import { joiResolver } from '@hookform/resolvers/joi-resolver'
 import axios from 'axios'
 import { useSWRConfig } from 'swr'
+import { useState } from 'react'
+
 import { createPostSchema } from '../../../modules/post/post.schema'
 
 import H4 from '../typography/H4'
 import ControlledTextarea from '../inputs/ControlledTextearea'
 import Button from '../inputs/Button'
-import { useSWRConfig } from 'swr'
 
 const PostContainer = styled.div`
   background-color: ${props => props.theme.white};
   padding: 20px 40px;
 
-@media (max-width: 500px) {
-  padding: 20px;
+  @media (max-width: 500px) {
+    padding: 20px;
 }
 `
 
@@ -27,13 +28,13 @@ const Title = styled.div`
 const TextContainer = styled.div`
   margin: 20px 0;
   width: 100%;
+  gap: 5px;
 `
 
 const BottomContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
-
+  
   @media (max-width: 500px) {
     flex-direction: column-reverse;
   }
@@ -44,19 +45,29 @@ const BottomText = styled.p`
 `
 
 function CreatePost ({ username }) {
-  const { mutate } = useSWRConfig
+  const { mutate } = useSWRConfig()
   const { control, handleSubmit, formState: { isValid }, reset } = useForm({
     resolver: joiResolver(createPostSchema),
     mode: 'all'
   })
 
+  const [loadingButton, setLoadingButton] = useState(false)
+
   const onSubmit = async (data) => {
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, data)
-    if (response.status === 201) {
-      reset()
-      mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
+
+    try{
+      setLoadingButton(true)
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, data)
+        if (response.status === 201) {
+          reset()
+          mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
     }
-  }
+  } catch (err) {
+    console.error(err)
+} finally {
+    setLoadingButton(false)
+}
+} 
 
   return (
     <PostContainer>
