@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import theme from '../../theme';
 
-const WIDTH_BREAK = '700px'
+const WIDTH_BREAK = '700px';
 
 const StyledFlex = styled.div`
  display: flex; 
@@ -35,7 +34,7 @@ display: flex;
 flex-direction: column;
 
 height: calc(100vh - 60px);
-overflow: auto;
+overflow-y: auto;
 
 &:before, &:after {
   content: '';
@@ -46,17 +45,19 @@ overflow: auto;
 
  function ImageWithSpace ({ children, image }) {
   return (
-    <StyledFlex>
-      <StyledImage image={image} />
-      <StyledContainer>
-        {children}
-      </StyledContainer>      
-    </StyledFlex>
+    <div>
+      <StyledFlex>
+        <StyledImage image={image} />
+        <StyledContainer>
+          {children}
+        </StyledContainer>      
+      </StyledFlex>
+    </div>
   )
 }
 
 ImageWithSpace.defaultProps = {
-  image: '/public/coffee-background.jpg'
+  image: '/coffee-background.jpg'
 }
 
 export default ImageWithSpace

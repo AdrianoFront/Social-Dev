@@ -18,7 +18,7 @@ function Container ({ children }) {
   return (
     <StyledContainer>
       <StyledChildren>
-      {children}
+        {children}
       </StyledChildren>
     </StyledContainer>
   )

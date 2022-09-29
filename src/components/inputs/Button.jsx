@@ -8,9 +8,9 @@ const StyleButton = style.button`
   font-weight: bold;
   color: ${props => props.theme.white};
   font-size: 16px;
-  transition: 0.3s;
+  transition: all 0.3s;
 
-  ${props => props.disabled && 'cursor: pointer'}
+  ${props => !props.disabled && 'cursor: pointer;'}
 
   :hover {
     background-color: ${props => props.theme.primaryHover};

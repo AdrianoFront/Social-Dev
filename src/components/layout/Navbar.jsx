@@ -1,4 +1,4 @@
-import style from 'styled-components'
+import styled from 'styled-components'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 

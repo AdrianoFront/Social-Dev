@@ -21,7 +21,7 @@ const StyledOption = styled.div`
   cursor: pointer;
 
   :hover {
-    background-color: ${props => props.theme.inputBackground}
+    background-color: ${props => props.theme.Background}
   }
 `
 
