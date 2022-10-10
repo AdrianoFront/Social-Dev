@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
-import { joiResolver } from '@hookform/resolvers/joi-resolver'
+import { joiResolver } from '@hookform/resolvers/joi'
 import axios from 'axios'
 import { useSWRConfig } from 'swr'
 import { useState } from 'react'
@@ -64,9 +64,9 @@ function CreatePost ({ username }) {
     }
   } catch (err) {
     console.error(err)
-} finally {
-    setLoadingButton(false)
-}
+  } finally {
+      setLoadingButton(false)
+  }
 } 
 
   return (
